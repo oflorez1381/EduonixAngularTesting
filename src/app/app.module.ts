@@ -7,13 +7,15 @@ import {BookComponent} from './components/book/book.component';
 import {BookListComponent} from './components/book-list/book-list.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BookEditComponent} from './components/book-edit/book-edit.component';
+import {TreeComponent} from './components/tree/tree.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
     BookListComponent,
-    BookEditComponent
+    BookEditComponent,
+    TreeComponent
   ],
   imports: [
     BrowserModule,
