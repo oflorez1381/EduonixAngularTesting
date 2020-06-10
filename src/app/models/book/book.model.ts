@@ -29,6 +29,11 @@ export class BookModel implements BookInterface {
     return null;
   }
 
+  public static query(): BookModel[]{
+    const books: BookModel[] = JSON.parse(localStorage.getItem('books') || '[]');
+    return books.slice();
+  }
+
   public destroy(){
     const books: BookModel[] = JSON.parse(localStorage.getItem('books') || '[]');
     books.forEach((item, index) => {
