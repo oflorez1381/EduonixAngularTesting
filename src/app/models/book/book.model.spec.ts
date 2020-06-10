@@ -39,11 +39,29 @@ describe('BookModel', () => {
     localStorage.clear();
   });
 
+  it('has localStorage working', () => {
+    localStorage.setItem('key', 'value');
+    expect(localStorage.getItem('key')).toBe('value');
+  });
+
   it('has a valid model', () => {
     expect(book.image).toEqual(image);
     expect(book.title).toEqual(title);
     expect(book.description).toEqual(description);
     expect(book.price).toEqual(price);
     expect(book.upvotes).toEqual(upvotes);
+  });
+  it('has find and save methods working', () => {
+    book.save();
+    const bookFromStorage: BookModel = BookModel.find(book.title);
+    expect(book).toEqual(bookFromStorage);
+  });
+
+  it('has destroy method working', () => {
+    book.save();
+    book.destroy();
+    const bookFromStorage: BookModel = BookModel.find(book.title);
+    expect(bookFromStorage).not.toBeTruthy();
+    expect(bookFromStorage).toBeNull();
   });
 });

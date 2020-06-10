@@ -29,7 +29,7 @@ export class BookModel implements BookInterface {
     return null;
   }
 
-  destroy(){
+  public destroy(){
     const books: BookModel[] = JSON.parse(localStorage.getItem('books') || '[]');
     books.forEach((item, index) => {
       if (item.title === this.title) {
@@ -39,7 +39,7 @@ export class BookModel implements BookInterface {
     });
     return null;
   }
-  save(){
+  public save(){
     const books: BookModel[] = JSON.parse(localStorage.getItem('books') || '[]');
     books.forEach((item, index) => {
       if (item.title === this.title) { books.splice(index, 1); }
