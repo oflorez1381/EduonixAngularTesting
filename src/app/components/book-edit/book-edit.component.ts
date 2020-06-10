@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
-
+import {FormBuilder, FormGroup, NgForm, ValidatorFn, Validators} from '@angular/forms';
 import {BookModel} from '../../models/book/book.model';
 
 @Component({
@@ -9,13 +8,15 @@ import {BookModel} from '../../models/book/book.model';
   templateUrl: './book-edit.component.html',
   styleUrls: ['./book-edit.component.css']
 })
-
 export class BookEditComponent implements OnInit {
+
   bookEditForm: FormGroup;
   bookEditDynamic: FormGroup;
   book: BookModel;
   activeForm = 'reactive';
   @ViewChild(NgForm) templateForm: NgForm;
+
+  // tslint:disable-next-line:ban-types
   question: Object = {
     children: [
       {
@@ -37,7 +38,9 @@ export class BookEditComponent implements OnInit {
         required: false,
         label: 'Description',
         paramName: 'description'
+
       },
+
       {
         type: 'input',
         required: true,
@@ -58,6 +61,7 @@ export class BookEditComponent implements OnInit {
         paramName: 'genre',
         value: 'non_fiction'
       },
+
       {
         type: 'select',
         required: true,
@@ -78,6 +82,8 @@ export class BookEditComponent implements OnInit {
   };
 
   constructor(fb: FormBuilder, private route: ActivatedRoute) {
+    const dynamicFormConfig = this.prepareForm(this.question);
+    this.bookEditDynamic = fb.group(dynamicFormConfig);
     this.bookEditForm = fb.group({
       title: ['', Validators.required],
       image: ['', Validators.required],
@@ -92,14 +98,30 @@ export class BookEditComponent implements OnInit {
     });
   }
 
+  prepareForm(question) {
+    const formStructure = {};
+    for (const element of question.children) {
+      const validators: ValidatorFn[] = [];
+      if (element.required) { validators.push(Validators.required); }
+      if (element.minlength) { validators.push(Validators.minLength(element.minlength)); }
+      if (element.maxLength) { validators.push(Validators.maxLength(element.maxLength)); }
+      formStructure[element.paramName] = ['', validators];
+    }
+    return formStructure;
+  }
+
   submitReactiveForm() {
+    console.log('submiting');
     const bookData = this.prepareSaveBook();
-    this.book = new BookModel(
-      bookData.image,
+    this.book = new BookModel(bookData.image,
       bookData.title,
       bookData.description,
-      bookData.price
-    );
+      bookData.price);
+    this.book.save();
+  }
+
+  submitTemplateForm() {
+    console.log('submiting form');
     this.book.save();
   }
 
@@ -108,7 +130,6 @@ export class BookEditComponent implements OnInit {
     return formModel;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

@@ -8,6 +8,7 @@ import {BookListComponent} from './components/book-list/book-list.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BookEditComponent} from './components/book-edit/book-edit.component';
 import {TreeComponent} from './components/tree/tree.component';
+import {NgInitDirective} from './directive/ng-init.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {TreeComponent} from './components/tree/tree.component';
     BookComponent,
     BookListComponent,
     BookEditComponent,
-    TreeComponent
+    TreeComponent,
+    NgInitDirective
   ],
   imports: [
     BrowserModule,

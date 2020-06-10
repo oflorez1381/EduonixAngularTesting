@@ -1,4 +1,4 @@
-<div *ngFor='let child of questions.children'>
+<div *ngFor='let child of question.children'>
   <ng-container [ngTemplateOutlet]='resolveTemplate(child)'
                 [ngTemplateOutletContext]='{child: child, form: form}'></ng-container>
 </div>

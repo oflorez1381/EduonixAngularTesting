@@ -17,15 +17,13 @@ export class TreeComponent implements OnInit {
   @ViewChild('empty') empty: TemplateRef<any>;
   @ViewChild('select') select: TemplateRef<any>;
 
-
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   resolveTemplate(question) {
+    console.log(question);
     if (question == null) { return this.empty; }
-
     const templateName: string = question.type;
     return {
       input: this.input,
@@ -33,5 +31,4 @@ export class TreeComponent implements OnInit {
       select: this.select
     }[templateName];
   }
-
 }
