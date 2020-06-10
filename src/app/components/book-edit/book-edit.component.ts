@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {BookModel} from '../../models/book/book.model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+
+import {BookModel} from '../../models/book/book.model';
 
 @Component({
   selector: 'app-book-edit',
   templateUrl: './book-edit.component.html',
   styleUrls: ['./book-edit.component.css']
 })
-export class BookEditComponent implements OnInit {
 
+export class BookEditComponent implements OnInit {
   bookEditForm: FormGroup;
   book: BookModel;
   activeForm = 'reactive';
+  @ViewChild(NgForm) templateForm: NgForm;
 
   constructor(fb: FormBuilder, private route: ActivatedRoute) {
     this.bookEditForm = fb.group({
@@ -21,16 +23,15 @@ export class BookEditComponent implements OnInit {
       description: [''],
       price: ['']
     });
-
     route.params.subscribe(res => {
       this.book = BookModel.find(res.title);
-      if (this.book == null){
+      if (this.book == null) {
         this.book = new BookModel('', '', '', 0);
       }
     });
   }
 
-  submitReactiveForm(){
+  submitReactiveForm() {
     const bookData = this.prepareSaveBook();
     this.book = new BookModel(
       bookData.image,
@@ -41,12 +42,12 @@ export class BookEditComponent implements OnInit {
     this.book.save();
   }
 
-  ngOnInit() {
-  }
-
-  private prepareSaveBook() {
+  prepareSaveBook() {
     const formModel = this.bookEditForm.value;
     return formModel;
+  }
+
+  ngOnInit() {
   }
 
 }

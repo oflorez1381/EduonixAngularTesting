@@ -8,9 +8,7 @@
   <div class="col-4">
     <a [routerLink]='' (click)='activeForm="reactive"'>Reactive Form</a>
   </div>
-</div>
 
-<div class="row">
   <div class="col-4">
     <a [routerLink]='' (click)='activeForm="templateDriven"'>Template Form</a>
   </div>
@@ -105,19 +103,16 @@
                 name='description2' class='description form-control'></textarea>
     </div>
 
-    <div class="col-12 form-group">
+    <div class="col-12 form-group price-group">
       <label for="price2">Price</label>
-      <input [(ngModel)]='book.price' name='price2' type='text' id='price2'
-             class='price form-control' #price2='ngModel'
-             required pattern='^\d+(,\d{3})*(\.\d*)?$'>
 
-      <div *ngIf='!price2.valid && (price2.dirty || price2.touched)'
-           class='invalid-feedback' style='display: block;'>
-        <div *ngIf='image2?.errors?.required'>
-          Price is required.
+      <input [(ngModel)]='book.price' pattern='^\d+(,\d{3})*(\.\d*)?$'
+             name='price2' id='price2' type='text' class='price' #price2='ngModel' required>
+      <div *ngIf='!price2.valid && (price2.dirty || price2.touched)' class="invalid-feedback" style='display: block;'>
+        <div *ngIf="price2.errors.required">
+          Please set the price
         </div>
-
-        <div *ngIf='image2?.errors?.pattern'>
+        <div *ngIf="price2.errors.pattern">
           Please follow the format, for example 1000,000.15
         </div>
       </div>
