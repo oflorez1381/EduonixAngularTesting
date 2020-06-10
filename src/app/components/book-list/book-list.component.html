@@ -6,6 +6,6 @@
     {{ book.title }}
   </div>
   <div class="col-3">
-    <a routerLink="books/{{ book.title }}/edit">Edit</a>
+    <a [href]='"books/" + book.title + "/edit"'>Edit</a>
   </div>
 </div>
