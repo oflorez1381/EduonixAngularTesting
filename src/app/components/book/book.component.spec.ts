@@ -74,4 +74,26 @@ describe('BookComponent', () => {
     button.click();
     expect(spy).toHaveBeenCalled();
   });
+
+  xit('should emit addToCart event using done', (done) => {
+    component.addToCart.subscribe( event => {
+      expect(event).toEqual(component.book);
+      done();
+    });
+    component.sendToCart();
+  });
+
+  it('should emit addToCart event', () => {
+    component.addToCart.subscribe( event => {
+      expect(event).toEqual(component.book);
+    });
+    component.sendToCart();
+  });
+
+  it('should call to function sendToCart when clicked', () => {
+    const spy = spyOn(component, 'sendToCart');
+    const button = nativeElement.querySelector('button.send-to-cart');
+    button.dispatchEvent(new Event('click'));
+    expect(spy).toHaveBeenCalled();
+  });
 });

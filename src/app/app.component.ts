@@ -8,6 +8,7 @@ import {BookModel} from './models/book/book.model';
 })
 export class AppComponent {
   title = 'EduonixAngularTesting';
+  public cart: BookModel[] = [];
   public book: BookModel = new BookModel(
     'https://upload.wikimedia.org/wikipedia/commons/1/1d/Tom_Sawyer_1876_frontispiece.jpg',
     'Tom Sawyer',
@@ -15,4 +16,7 @@ export class AppComponent {
     15,
     0
   );
+  addToCart(book: BookModel){
+    this.cart.push(book);
+  }
 }
