@@ -59,4 +59,10 @@ export class BookModel implements BookInterface {
     localStorage.setItem('books', JSON.stringify(books));
     return true;
   }
+
+  public getData(): object {
+    const result = {};
+    Object.keys(this).map(key => result[key] = this[key]);
+    return result;
+  }
 }
