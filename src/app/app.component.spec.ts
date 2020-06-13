@@ -1,7 +1,9 @@
-import {async, TestBed} from '@angular/core/testing';
+import {async, fakeAsync, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {BookComponent} from './components/book/book.component';
+import {CartList, CartServiceMock} from './services/cart.service.mock';
+import {CartService} from './services/cart.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,6 +15,9 @@ describe('AppComponent', () => {
         AppComponent,
         BookComponent
       ],
+      providers: [
+        { provide: CartService, useClass: CartServiceMock }
+      ]
     }).compileComponents();
   }));
 
@@ -27,4 +32,12 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('EduonixAngularTesting');
   });
+
+  it('should display the cart after rendering',
+    fakeAsync(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.cart).toBe(CartList);
+    })
+  );
 });

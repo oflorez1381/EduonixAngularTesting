@@ -130,7 +130,7 @@ describe('BookEditComponent', () => {
       component.activeForm = 'dynamicForm';
       fixture.detectChanges();
       const form = component.bookEditDynamic;
-      const elements = component.question.children;
+      const elements = component.question['children'];
       const ethalonObject: any = {};
 
       for (const el of elements) {
