@@ -125,39 +125,39 @@ describe('BookEditComponent', () => {
       expect(form.get('price2')).toBeTruthy();
     })
   );
-  xit('should have dynamic form working right',
-    fakeAsync(() => {
-      component.activeForm = 'dynamicForm';
-      fixture.detectChanges();
-      const form = component.bookEditDynamic;
-      const elements = component.question['children'];
-      const ethalonObject: any = {};
-
-      for (const el of elements) {
-        if (el.type === 'input') {
-          const value = faker.lorem.sentence();
-          form.get(el.paramName).setValue(value);
-          ethalonObject[el.paramName] = value;
-        }
-        if (el.type === 'select') {
-          const option = el.options[Math.floor(Math.random() * el.options.length)];
-          component.book[el.paramName] = option.paramName;
-          fixture.detectChanges();
-          ethalonObject[el.paramName] = option.paramName;
-        }
-        if (el.type === 'checkbox') {
-          form.controls[el.paramName].setValue(true);
-          ethalonObject[el.paramName] = true;
-        }
-      }
-
-      const button = fixture.debugElement.
-      query(By.css('button[type="submit"]')).nativeElement;
-
-      button.click();
-      const bookFromStorage = BookModel.find(ethalonObject.title);
-      expect<any>(bookFromStorage).toEqual(component.book);
-    })
-  );
+  // xit('should have dynamic form working right',
+  //   fakeAsync(() => {
+  //     component.activeForm = 'dynamicForm';
+  //     fixture.detectChanges();
+  //     const form = component.bookEditDynamic;
+  //     const elements = component.question['children'];
+  //     const ethalonObject: any = {};
+  //
+  //     for (const el of elements) {
+  //       if (el.type === 'input') {
+  //         const value = faker.lorem.sentence();
+  //         form.get(el.paramName).setValue(value);
+  //         ethalonObject[el.paramName] = value;
+  //       }
+  //       if (el.type === 'select') {
+  //         const option = el.options[Math.floor(Math.random() * el.options.length)];
+  //         component.book[el.paramName] = option.paramName;
+  //         fixture.detectChanges();
+  //         ethalonObject[el.paramName] = option.paramName;
+  //       }
+  //       if (el.type === 'checkbox') {
+  //         form.controls[el.paramName].setValue(true);
+  //         ethalonObject[el.paramName] = true;
+  //       }
+  //     }
+  //
+  //     const button = fixture.debugElement.
+  //     query(By.css('button[type="submit"]')).nativeElement;
+  //
+  //     button.click();
+  //     const bookFromStorage = BookModel.find(ethalonObject.title);
+  //     expect<any>(bookFromStorage).toEqual(component.book);
+  //   })
+  // );
 
 });
