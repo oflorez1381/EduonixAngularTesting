@@ -11,6 +11,7 @@ import {TreeComponent} from './components/tree/tree.component';
 import {NgInitDirective} from './directive/ng-init.directive';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {environment} from '../environments/environment';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireModule
+    AngularFireModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
