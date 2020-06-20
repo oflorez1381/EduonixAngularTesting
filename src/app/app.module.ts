@@ -12,6 +12,8 @@ import {NgInitDirective} from './directive/ng-init.directive';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
+import {DiscountFormatterPipe} from './pipes/discount-formatter/discount-formatter.pipe';
+import {CartService} from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     BookListComponent,
     BookEditComponent,
     TreeComponent,
-    NgInitDirective
+    NgInitDirective,
+    DiscountFormatterPipe
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFireModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

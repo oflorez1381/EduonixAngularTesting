@@ -6,6 +6,14 @@ import {BookModel} from '../../models/book/book.model';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CartService} from '../../services/cart.service';
 import {CartServiceMock} from '../../services/cart.service.mock';
+import {Pipe, PipeTransform} from '@angular/core';
+
+@Pipe({name: 'discount'})
+class MockPipe implements PipeTransform{
+  transform(value: number): any {
+    return value;
+  }
+}
 
 describe('BookComponent', () => {
   let component: BookComponent;
@@ -15,7 +23,7 @@ describe('BookComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookComponent ],
+      declarations: [ BookComponent, MockPipe ],
       imports: [ RouterTestingModule ],
       providers: [
         { provide: CartService, useClass: CartServiceMock }

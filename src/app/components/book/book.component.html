@@ -10,20 +10,19 @@
       <h4 class="book-price">{{ book.price | currency: 'USD':'symbol' }}</h4>
     </div>
     <div class="row">
+      <h4 class="new-price" [innerHTML]='book.price | discount:20'></h4>
+    </div>
+    <div class="row">
       <h4 class="book-upvotes">Upvotes: {{ book.upvotes }}</h4>
     </div>
-
     <div class="row">
       <h4 class="book-description">{{ book.description }}</h4>
     </div>
-
     <div class="row">
       <button class="upvote" (click)="upvote()">Upvote</button>
     </div>
-
     <div class="row">
       <button class="send-to-cart" (click)="sendToCart()">Add to Cart</button>
     </div>
-
   </div>
 </div>

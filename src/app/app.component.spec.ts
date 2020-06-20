@@ -4,6 +4,7 @@ import {AppComponent} from './app.component';
 import {BookComponent} from './components/book/book.component';
 import {CartList, CartServiceMock} from './services/cart.service.mock';
 import {CartService} from './services/cart.service';
+import {DiscountFormatterPipe} from './pipes/discount-formatter/discount-formatter.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        BookComponent
+        BookComponent,
+        DiscountFormatterPipe
       ],
       providers: [
         { provide: CartService, useClass: CartServiceMock }
