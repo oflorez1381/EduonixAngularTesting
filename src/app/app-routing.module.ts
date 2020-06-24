@@ -6,6 +6,7 @@ import {BookEditComponent} from './components/book-edit/book-edit.component';
 
 
 const routes: Routes = [
+  { path: 'books/new', component: BookEditComponent },
   { path: 'books/:title', component: BookComponent },
   { path: 'books/:title/edit', component: BookEditComponent },
   { path: 'books', component: BookListComponent },

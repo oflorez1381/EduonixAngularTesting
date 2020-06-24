@@ -10,13 +10,13 @@ import {CartService} from './services/cart.service';
 export class AppComponent {
   title = 'EduonixAngularTesting';
   public cart: BookModel[] = [];
-  public book: BookModel = new BookModel(
-    'https://upload.wikimedia.org/wikipedia/commons/1/1d/Tom_Sawyer_1876_frontispiece.jpg',
-    'Tom Sawyer',
-    `Thomas "Tom" Sawyer is the title character of the Mark Twain novel The Adventures of Tom Sawyer`,
-    15,
-    0
-  );
+  // public book: BookModel = new BookModel(
+  //   'https://upload.wikimedia.org/wikipedia/commons/1/1d/Tom_Sawyer_1876_frontispiece.jpg',
+  //   'Tom Sawyer',
+  //   `Thomas "Tom" Sawyer is the title character of the Mark Twain novel The Adventures of Tom Sawyer`,
+  //   15,
+  //   0
+  // );
 
   constructor(private cartService: CartService) {
     this.cartService.query().subscribe((items: BookModel[]) => {

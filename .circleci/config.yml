@@ -30,11 +30,11 @@
         - run:
             name: Linting
             command: npm run lint
-        # Test the source code
+        # Component Test
         - run:
-            name: Testing
+            name: Component Tests
             command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-        # End to End test
+        # End to End Test
         - run:
-            name: End to End Test
+            name: End to End Tests
             command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
