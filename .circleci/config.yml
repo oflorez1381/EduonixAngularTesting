@@ -35,6 +35,6 @@
             name: Testing
             command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
         # End to End test
-#        - run:
-#            name: End to End Test
-#            command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+        - run:
+            name: End to End Test
+            command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
